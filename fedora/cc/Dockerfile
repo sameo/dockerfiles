@@ -8,5 +8,7 @@ RUN dnf config-manager --add-repo http://download.opensuse.org/repositories/home
 RUN dnf config-manager --add-repo https://yum.dockerproject.org/repo/testing/fedora/24
 RUN rpm --import https://yum.dockerproject.org/gpg
 RUN dnf install -y cc-oci-runtime linux-container docker-engine
+RUN dnf install -y iproute
+RUN dnf install -y libmnl libmnl-devel
 
 RUN echo "dockerd --add-runtime cor=/usr/bin/cc-oci-runtime --default-runtime=cor --storage-driver=vfs &" > /run_dockerd && chmod +x /run_dockerd
