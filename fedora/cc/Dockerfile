@@ -14,10 +14,7 @@ RUN rpm --import http://download.opensuse.org/repositories/home:/clearlinux:/pre
 RUN rpm --import https://yum.dockerproject.org/gpg
 
 # Install Clear Containers and the docker packages
-RUN dnf install -y cc-oci-runtime linux-container docker-engine-1.12.1
-
-# Install some tools
-RUN dnf install -y procps vim
+RUN dnf install -y cc-oci-runtime linux-container docker-engine-1.12.1 procps vim
 
 # Have Docker run with Clear Containers as the default runtime
 RUN echo -e "#!/bin/bash\ndockerd --add-runtime cor=/usr/bin/cc-oci-runtime --default-runtime=cor --storage-driver=vfs > /dev/null 2>&1 &" > /root/start-cc.sh && chmod +x /root/start-cc.sh
